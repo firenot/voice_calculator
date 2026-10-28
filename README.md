@@ -1,17 +1,79 @@
-# voice_calculator
+# Voice Calculator 
 
-A new Flutter project.
+Кросс-платформенное приложение-калькулятор с **полностью голосовым управлением**, работающее локально на устройстве без необходимости подключения к интернету. Проект разработан на Flutter и Dart.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+##  Основные возможности
 
-A few resources to get you started if this is your first Flutter project:
+* **Voice-First интерфейс:** Управление калькулятором исключительно с помощью голосовых команд на русском языке.
+* **100% Offline (Офлайн-режим):** Распознавание речи происходит локально на устройстве с помощью движка **Vosk SDK** и языковой модели. Интернет-соединение не требуется.
+* **Поддержка математических операций:** Вычисление базовых арифметческих действий (сложение, вычитание, умножение, деление), а также сложных выражений (проценты, корни, степени).
+* **История вычислений:** Автоматическое сохранение всех выполненных расчетов с возможностью просмотра предыдущих операций.
+* **Кросс-платформенность:** Сборки под **Android** и **Windows**.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+##  Руководство пользователя
+
+Подробную инструкцию по использованию голосовых команд и примеры фраз вы найдете в отдельном файле:
+ **[USER_GUIDE.md](./USER_GUIDE.md)**
+
+
+
+##  Технологический стек
+
+* **Фреймворк:** Flutter (Dart)
+* **Распознавание речи:** Vosk API (`vosk_flutter`)
+* **Архитектура:** Clean Architecture / State Management (в зависимости от реализации)
+* **Платформы:** Android, Windows
+
+
+
+##  Начало работы и запуск
+
+Для запуска проекта на вашем компьютере выполните следующие шаги:
+
+### 1. Требования
+* Установленный **Flutter SDK** (версия 3.x и выше)
+* Установленный **Dart SDK**
+* Настроенное окружение для Android (Android Studio / Android SDK) и/или Windows (Visual Studio / C++ Build Tools).
+
+### 2. Клонирование репозитория
+```bash
+git clone [https://github.com/firenot/voice_calculator.git](https://github.com/firenot/voice_calculator.git)
+cd voice_calculator
+```
+
+### 3. Установка зависимостей
+```bash
+flutter pub get
+```
+
+### 4. Запуск приложения
+Для ПК (Windows):
+
+```bash
+flutter run -d windows
+```
+
+Для мобильного устройства (Android):
+Подключите устройство по USB (или запустите эмулятор) и выполните:
+
+```bash
+flutter run
+```
+
+
+## Сборка релизов
+Сборка APK для Android:
+
+```bash
+flutter build apk --release
+```
+
+Сборка для Windows:
+
+```bash
+flutter build windows --release
+```
