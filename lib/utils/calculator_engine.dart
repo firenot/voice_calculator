@@ -132,8 +132,22 @@ class CalculatorEngine {
         return CalculationResult(displayExpression: text, result: 'Ошибка расчета', success: false);
       }
 
-      double finalResult = (reduced[0] is num) ? (reduced[0] as num).toDouble() : 0.0;
-      for (int i = 1; i < reduced.length; i += 2) {
+      double finalResult = 0.0;
+      int startIndex = 0;
+
+      if (reduced.isNotEmpty && (reduced[0] == '+' || reduced[0] == '-')) {
+        String unaryOp = reduced[0].toString();
+        if (reduced.length > 1 && reduced[1] is num) {
+          double val = (reduced[1] as num).toDouble();
+          finalResult = (unaryOp == '-') ? -val : val;
+          startIndex = 2;
+        }
+      } else if (reduced.isNotEmpty && reduced[0] is num) {
+        finalResult = (reduced[0] as num).toDouble();
+        startIndex = 1;
+      }
+
+      for (int i = startIndex; i < reduced.length; i += 2) {
         if (i + 1 >= reduced.length) break;
         String op = reduced[i].toString();
         double nextVal = (reduced[i + 1] is num) ? (reduced[i + 1] as num).toDouble() : 0.0;
@@ -142,6 +156,13 @@ class CalculatorEngine {
       }
 
       String displayExpr = tokens.join(' ');
+      if (tokens.length >= 2 && (tokens[0] == '+' || tokens[0] == '-') && tokens[1] is num) {
+        displayExpr = '${tokens[0]}${tokens[1]}';
+        for (int i = 2; i < tokens.length; i++) {
+          displayExpr += ' ${tokens[i]}';
+        }
+      }
+
       String resStr = finalResult == finalResult.roundToDouble()
           ? finalResult.toInt().toString()
           : finalResult.toString();
